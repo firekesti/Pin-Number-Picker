@@ -1,5 +1,5 @@
 # Pin-Number-Picker
-A librarifcation of the PinNumberPicker from the AndroidTV Settings app, with a couple additional goodies.
+A librarifcation of the PinNumberPicker from the AndroidTV Settings app, with a couple additional goodies. This is meant for Android TV apps where the user has a D-pad remote or keyboard!  
 
 ![screenshot](https://raw.githubusercontent.com/firekesti/Pin-Number-Picker/master/screenshot.png)
 
