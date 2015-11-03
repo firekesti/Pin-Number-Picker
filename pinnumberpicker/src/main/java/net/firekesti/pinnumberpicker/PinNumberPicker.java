@@ -43,7 +43,7 @@ public final class PinNumberPicker extends FrameLayout {
     private final View mNumberDownView;
     private final TextView[] mNumberViews;
     private final OverScroller mScroller;
-    private OnFinalNumberDoneListener listener;
+    private OnFinalNumberDoneListener mListener;
 
     public PinNumberPicker(Context context) {
         this(context, null);
@@ -57,8 +57,7 @@ public final class PinNumberPicker extends FrameLayout {
         this(context, attrs, defStyleAttr, 0);
     }
 
-    public PinNumberPicker(Context context, AttributeSet attrs, int defStyleAttr,
-                           int defStyleRes) {
+    public PinNumberPicker(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
         View view = inflate(context, R.layout.pin_number_picker, this);
         mNumberViewHolder = view.findViewById(R.id.number_view_holder);
@@ -123,6 +122,7 @@ public final class PinNumberPicker extends FrameLayout {
             }
         });
         mNumberViewHolder.setScrollY(mNumberViewHeight);
+        mListener = new OnFinalNumberDoneListener();
     }
 
     public static void loadResources(Context context) {
@@ -169,7 +169,7 @@ public final class PinNumberPicker extends FrameLayout {
             }
             if (mNextNumberPicker == null) {
                 // The user is done - they pressed DPAD_CENTER or ENTER and there's no next number picker.
-                listener.onDone();
+                mListener.onDone();
             } else {
                 mNextNumberPicker.requestFocus();
             }
@@ -312,7 +312,7 @@ public final class PinNumberPicker extends FrameLayout {
     Interface code for a callback when CENTER/ENTER is pressed on the last picker
      */
     public void setOnFinalNumberDoneListener(OnFinalNumberDoneListener listener) {
-        this.listener = listener;
+        this.mListener = listener;
     }
 
     public interface DoneListener {
