@@ -2,4 +2,11 @@
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
+
+    <!-- This setting turns arrows on when used in conjunction with setArrowsEnabled(true) -->
+    <dimen name="pin_number_picker_height">@dimen/pin_number_picker_height_with_arrows</dimen>
+
+    <!-- To leave arrows off, simply do nothing! This dimen is used by default.
+    Likewise, using setArrowsEnabled(false) is optional, as they are off by default. -->
+    <!-- <dimen name="pin_number_picker_height">@dimen/pin_number_picker_height_standard</dimen> -->
 </resources>

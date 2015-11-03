@@ -11,6 +11,6 @@
     <item name="pin_alpha_for_adjacent_number" type="dimen" format="float">0.4</item>
 
     <!-- Change this to determine whether arrows will appear! -->
-    <dimen name="pin_number_picker_height">@dimen/pin_number_picker_height_with_arrows</dimen>
+    <dimen name="pin_number_picker_height">@dimen/pin_number_picker_height_standard</dimen>
     <!-- <dimen name="pin_number_picker_height">@dimen/pin_number_picker_height_standard</dimen> -->
 </resources>
