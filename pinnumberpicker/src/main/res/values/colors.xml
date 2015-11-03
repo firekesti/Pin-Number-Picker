@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="pin_picker_text_color">@android:color/white</color>
+    <color name="pin_number_picker_focused_background">@android:color/black</color>
+</resources>

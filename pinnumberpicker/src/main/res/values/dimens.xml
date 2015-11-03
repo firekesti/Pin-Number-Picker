@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="pin_number_picker_text_size">32sp</dimen>
+    <dimen name="pin_number_picker_text_view_width">64dp</dimen>
+    <dimen name="pin_number_picker_text_view_height">64dp</dimen>
+    <dimen name="pin_number_picker_width">64dp</dimen>
+    <dimen name="pin_number_picker_height_with_arrows">320dp</dimen>
+    <dimen name="pin_number_picker_height_standard">192dp</dimen>
+
+    <item name="pin_alpha_for_focused_number" type="dimen" format="float">1.0</item>
+    <item name="pin_alpha_for_adjacent_number" type="dimen" format="float">0.4</item>
+
+    <!-- Change this to determine whether arrows will appear! -->
+    <dimen name="pin_number_picker_height">@dimen/pin_number_picker_height_with_arrows</dimen>
+    <!-- <dimen name="pin_number_picker_height">@dimen/pin_number_picker_height_standard</dimen> -->
+</resources>
