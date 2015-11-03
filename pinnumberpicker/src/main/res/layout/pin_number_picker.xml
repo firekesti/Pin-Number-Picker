@@ -37,6 +37,7 @@
             android:contentDescription="@string/up_arrow_desc"
             android:scaleType="center"
             android:src="@drawable/ic_keyboard_arrow_up_white_48dp"
+            android:tint="@color/pin_picker_arrow_color"
             android:visibility="gone"/>
 
         <LinearLayout
@@ -95,6 +96,7 @@
             android:contentDescription="@string/down_arrow_desc"
             android:scaleType="center"
             android:src="@drawable/ic_keyboard_arrow_down_white_48dp"
+            android:tint="@color/pin_picker_arrow_color"
             android:visibility="gone"/>
     </LinearLayout>
 </FrameLayout>
