@@ -1,5 +1,5 @@
 # Pin-Number-Picker
-A librarifcation of the PinNumberPicker from the AndroidTV Settings app, with a couple additional goodies. This is meant for Android TV apps where the user has a D-pad remote or keyboard!  
+A librarification of the PinNumberPicker from the AndroidTV Settings app, with a couple additional goodies. This is meant for Android TV apps where the user has a D-pad remote or keyboard!  
 
 ![screenshot](https://raw.githubusercontent.com/firekesti/Pin-Number-Picker/master/screenshot.png)
 
@@ -24,6 +24,20 @@ numberPicker1.setNextNumberPicker(numberPicker2);
 ```
 
 By using `setNextNumberPicker`, you allow the user to go from one `PinNumberPicker` to the next by using the Enter or D-pad Center button. It also ties in with the `OnFinalNumberDoneListener`, which will be called whenever there is no "next" `PinNumberPicker` in the sequence. This allows you to read the number values once the user presses Enter/Center on the last picker.  
+
+## The Listener  
+This allows you to listen for when the user presses Enter/Center on the last `PinNumberPicker` in the sequence. From here, you can collect the number values.
+```java
+numberPicker4.setOnFinalNumberDoneListener(new OnFinalNumberDoneListener() {
+    @Override
+    public void onDone() {
+        String pin = "" + numberPicker1.getValue() + numberPicker2.getValue() +
+                numberPicker3.getValue() + numberPicker4.getValue();
+        Toast.makeText(MainActivity.this, "PIN is " + pin, Toast.LENGTH_SHORT).show();
+    }
+});
+```
+
 
 ## Arrows  
 The Android TV settings app version does not have arrows. I decided to add them as an optional feature! Enabling them is a two-step process. First:  
@@ -69,5 +83,8 @@ Finally, you can change the size this way:
 ### Please make sure!!!  
 ###`pin_number_picker_height_standard` should be 3x `pin_number_picker_text_view_height`  
 ###`pin_number_picker_height_with_arrows` should be 5x `pin_number_picker_text_view_height`
+
+Why, you ask? Well, you want to avoid something like this:  
+![screenshot](https://raw.githubusercontent.com/firekesti/Pin-Number-Picker/master/screenshot_bad.png)
 
 Okay, I think that's it! Please file an Issue if you have any questions or see any bugs!
