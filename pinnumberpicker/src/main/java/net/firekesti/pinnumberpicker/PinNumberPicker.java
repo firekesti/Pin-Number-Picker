@@ -44,6 +44,7 @@ public final class PinNumberPicker extends FrameLayout {
     private final TextView[] mNumberViews;
     private final OverScroller mScroller;
     private OnFinalNumberDoneListener mListener;
+    private boolean allowPlaceholder;
 
     public PinNumberPicker(Context context) {
         this(context, null);
@@ -280,7 +281,11 @@ public final class PinNumberPicker extends FrameLayout {
             if (i != CURRENT_NUMBER_VIEW_INDEX) {
                 mNumberViews[i].setText("");
             } else if (mCurrentValue >= mMinValue && mCurrentValue <= mMaxValue) {
-                mNumberViews[i].setText(String.valueOf(mCurrentValue));
+                String value = String.valueOf(mCurrentValue);
+                if (allowPlaceholder) {
+                    value = value.substring(0, 1);
+                }
+                mNumberViews[i].setText(value);
             }
         }
     }
@@ -292,7 +297,11 @@ public final class PinNumberPicker extends FrameLayout {
             }
             int value = adjustValueInValidRange(mCurrentValue - CURRENT_NUMBER_VIEW_INDEX);
             for (int i = 0; i < NUMBER_VIEWS_RES_ID.length; ++i) {
-                mNumberViews[i].setText(String.valueOf(adjustValueInValidRange(value)));
+                String text = String.valueOf(adjustValueInValidRange(value));
+                if (allowPlaceholder) {
+                    text = text.substring(0, 1);
+                }
+                mNumberViews[i].setText(text);
                 value = adjustValueInValidRange(value + 1);
             }
         }
@@ -306,6 +315,10 @@ public final class PinNumberPicker extends FrameLayout {
         }
         return (value < mMinValue) ? value + interval
                 : (value > mMaxValue) ? value - interval : value;
+    }
+
+    public void setAllowPlaceholder(boolean allowPlaceholder) {
+        this.allowPlaceholder = allowPlaceholder;
     }
 
     /*

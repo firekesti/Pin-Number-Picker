@@ -30,10 +30,11 @@ public class MainActivity extends AppCompatActivity {
         numberPicker3.setArrowsEnabled(true);
         numberPicker4.setArrowsEnabled(true);
 
-        numberPicker1.setValueRange(0, 9);
+        numberPicker1.setValueRange(-1, 9);
         numberPicker1.setNextNumberPicker(numberPicker2);
 
-        numberPicker2.setValueRange(0, 9);
+        numberPicker2.setAllowPlaceholder(true);
+        numberPicker2.setValueRange(-1, 9);
         numberPicker2.setNextNumberPicker(numberPicker3);
 
         numberPicker3.setValueRange(0, 9);
