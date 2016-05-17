@@ -35,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
 
         numberPicker2.setAllowPlaceholder(true);
         numberPicker2.setValueRange(-1, 9);
+        numberPicker2.setCurrentValue(5);
         numberPicker2.setNextNumberPicker(numberPicker3);
 
         numberPicker3.setValueRange(0, 9);

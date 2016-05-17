@@ -252,6 +252,12 @@ public final class PinNumberPicker extends FrameLayout {
         mNextValue = adjustValueInValidRange(value);
     }
 
+    public void setCurrentValue(int value) {
+        setNextValue(value);
+        mCurrentValue = mNextValue;
+        clearText();
+    }
+
     public void updateFocus() {
         endScrollAnimation();
         if (mNumberViewHolder.isFocused()) {
