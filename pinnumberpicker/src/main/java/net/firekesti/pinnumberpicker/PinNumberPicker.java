@@ -160,18 +160,23 @@ public final class PinNumberPicker extends FrameLayout {
 
     @Override
     public boolean dispatchKeyEvent(KeyEvent event) {
-        if (event.getAction() == KeyEvent.ACTION_UP) {
+        if (event.getAction() == KeyEvent.ACTION_DOWN) {
             int keyCode = event.getKeyCode();
             if (keyCode >= KeyEvent.KEYCODE_0 && keyCode <= KeyEvent.KEYCODE_9) {
                 setNextValue(keyCode - KeyEvent.KEYCODE_0);
             } else if (keyCode != KeyEvent.KEYCODE_DPAD_CENTER
-                    && keyCode != KeyEvent.KEYCODE_ENTER) {
+                    && keyCode != KeyEvent.KEYCODE_ENTER
+                    && keyCode != KeyEvent.KEYCODE_DPAD_RIGHT) {
                 return super.dispatchKeyEvent(event);
             }
             if (mNextNumberPicker == null) {
-                // The user is done - they pressed DPAD_CENTER or ENTER and there's no next number picker.
+                // The user is done - they pressed DPAD_CENTER or ENTER or RIGHT and there's no next number picker.
                 mListener.onDone();
+            } else if (keyCode == KeyEvent.KEYCODE_DPAD_RIGHT) {
+                // If the next one isn't null and the user pressed Right, return super
+                return super.dispatchKeyEvent(event);
             } else {
+                // Use the enter/center press to request focus on the next one
                 mNextNumberPicker.requestFocus();
             }
             return true;
