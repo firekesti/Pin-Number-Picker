@@ -45,6 +45,7 @@ public final class PinNumberPicker extends FrameLayout {
     private final OverScroller mScroller;
     private OnFinalNumberDoneListener mListener;
     private boolean allowPlaceholder;
+    private String placeholderChar;
 
     public PinNumberPicker(Context context) {
         this(context, null);
@@ -257,6 +258,12 @@ public final class PinNumberPicker extends FrameLayout {
         mNextValue = adjustValueInValidRange(value);
     }
 
+    public void setCurrentValue(int value) {
+        setNextValue(value);
+        mCurrentValue = mNextValue;
+        clearText();
+    }
+
     public void updateFocus() {
         endScrollAnimation();
         if (mNumberViewHolder.isFocused()) {
@@ -287,8 +294,8 @@ public final class PinNumberPicker extends FrameLayout {
                 mNumberViews[i].setText("");
             } else if (mCurrentValue >= mMinValue && mCurrentValue <= mMaxValue) {
                 String value = String.valueOf(mCurrentValue);
-                if (allowPlaceholder) {
-                    value = value.substring(0, 1);
+                if (allowPlaceholder && value.length() > 1) {
+                    value = placeholderChar;
                 }
                 mNumberViews[i].setText(value);
             }
@@ -303,8 +310,8 @@ public final class PinNumberPicker extends FrameLayout {
             int value = adjustValueInValidRange(mCurrentValue - CURRENT_NUMBER_VIEW_INDEX);
             for (int i = 0; i < NUMBER_VIEWS_RES_ID.length; ++i) {
                 String text = String.valueOf(adjustValueInValidRange(value));
-                if (allowPlaceholder) {
-                    text = text.substring(0, 1);
+                if (allowPlaceholder && text.length() > 1) {
+                    text = placeholderChar;
                 }
                 mNumberViews[i].setText(text);
                 value = adjustValueInValidRange(value + 1);
@@ -324,6 +331,10 @@ public final class PinNumberPicker extends FrameLayout {
 
     public void setAllowPlaceholder(boolean allowPlaceholder) {
         this.allowPlaceholder = allowPlaceholder;
+    }
+
+    public void setPlaceholderCharacter(String val) {
+        placeholderChar = val;
     }
 
     /*
