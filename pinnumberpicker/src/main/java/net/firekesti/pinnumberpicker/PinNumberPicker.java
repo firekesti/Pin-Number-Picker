@@ -165,6 +165,8 @@ public final class PinNumberPicker extends FrameLayout {
             int keyCode = event.getKeyCode();
             if (keyCode >= KeyEvent.KEYCODE_0 && keyCode <= KeyEvent.KEYCODE_9) {
                 setNextValue(keyCode - KeyEvent.KEYCODE_0);
+            } else if (keyCode >= KeyEvent.KEYCODE_NUMPAD_0 && keyCode <= KeyEvent.KEYCODE_NUMPAD_9) {
+                setNextValue(keyCode - KeyEvent.KEYCODE_NUMPAD_0);
             } else if (keyCode != KeyEvent.KEYCODE_DPAD_CENTER
                     && keyCode != KeyEvent.KEYCODE_ENTER
                     && keyCode != KeyEvent.KEYCODE_DPAD_RIGHT) {
