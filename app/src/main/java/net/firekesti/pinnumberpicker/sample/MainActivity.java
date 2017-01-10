@@ -30,23 +30,30 @@ public class MainActivity extends AppCompatActivity {
         numberPicker3.setArrowsEnabled(true);
         numberPicker4.setArrowsEnabled(true);
 
-        numberPicker1.setValueRange(-1, 9);
+        numberPicker1.setValueRange(0, 9);
         numberPicker1.setNextNumberPicker(numberPicker2);
 
         numberPicker2.setAllowPlaceholder(true);
-        numberPicker2.setValueRange(-1, 9);
+        numberPicker2.setValueRange(0, 9);
         numberPicker2.setNextNumberPicker(numberPicker3);
 
         numberPicker3.setValueRange(0, 9);
         numberPicker3.setNextNumberPicker(numberPicker4);
 
+        numberPicker4.setValueRange(-1, 9);
+        numberPicker4.setAllowPlaceholder(true);
+        numberPicker4.setPlaceholderCharacter("*");
 
-        numberPicker4.setValueRange(0, 9);
+
         numberPicker4.setOnFinalNumberDoneListener(new OnFinalNumberDoneListener() {
             @Override
             public void onDone() {
+                String lastDigit = Integer.toString(numberPicker4.getValue());
+                if (numberPicker4.getValue() == -1) {
+                    lastDigit = "";
+                }
                 String pin = "" + numberPicker1.getValue() + numberPicker2.getValue() +
-                        numberPicker3.getValue() + numberPicker4.getValue();
+                        numberPicker3.getValue() + lastDigit;
                 Toast.makeText(MainActivity.this, "PIN is " + pin, Toast.LENGTH_SHORT).show();
             }
         });

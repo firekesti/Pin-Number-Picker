@@ -45,6 +45,7 @@ public final class PinNumberPicker extends FrameLayout {
     private final OverScroller mScroller;
     private OnFinalNumberDoneListener mListener;
     private boolean allowPlaceholder;
+    private String placeholderChar;
 
     public PinNumberPicker(Context context) {
         this(context, null);
@@ -160,18 +161,27 @@ public final class PinNumberPicker extends FrameLayout {
 
     @Override
     public boolean dispatchKeyEvent(KeyEvent event) {
-        if (event.getAction() == KeyEvent.ACTION_UP) {
+        if (event.getAction() == KeyEvent.ACTION_DOWN) {
             int keyCode = event.getKeyCode();
             if (keyCode >= KeyEvent.KEYCODE_0 && keyCode <= KeyEvent.KEYCODE_9) {
                 setNextValue(keyCode - KeyEvent.KEYCODE_0);
+                updateFocus();
+            } else if (keyCode >= KeyEvent.KEYCODE_NUMPAD_0 && keyCode <= KeyEvent.KEYCODE_NUMPAD_9) {
+                setNextValue(keyCode - KeyEvent.KEYCODE_NUMPAD_0);
+                updateFocus();
             } else if (keyCode != KeyEvent.KEYCODE_DPAD_CENTER
-                    && keyCode != KeyEvent.KEYCODE_ENTER) {
+                    && keyCode != KeyEvent.KEYCODE_ENTER
+                    && keyCode != KeyEvent.KEYCODE_DPAD_RIGHT) {
                 return super.dispatchKeyEvent(event);
             }
             if (mNextNumberPicker == null) {
-                // The user is done - they pressed DPAD_CENTER or ENTER and there's no next number picker.
+                // The user is done - they pressed DPAD_CENTER or ENTER or RIGHT and there's no next number picker.
                 mListener.onDone();
+            } else if (keyCode == KeyEvent.KEYCODE_DPAD_RIGHT) {
+                // If the next one isn't null and the user pressed Right, return super
+                return super.dispatchKeyEvent(event);
             } else {
+                // Use the enter/center press to request focus on the next one
                 mNextNumberPicker.requestFocus();
             }
             return true;
@@ -252,6 +262,12 @@ public final class PinNumberPicker extends FrameLayout {
         mNextValue = adjustValueInValidRange(value);
     }
 
+    public void setCurrentValue(int value) {
+        setNextValue(value);
+        mCurrentValue = mNextValue;
+        clearText();
+    }
+
     public void updateFocus() {
         endScrollAnimation();
         if (mNumberViewHolder.isFocused()) {
@@ -282,8 +298,8 @@ public final class PinNumberPicker extends FrameLayout {
                 mNumberViews[i].setText("");
             } else if (mCurrentValue >= mMinValue && mCurrentValue <= mMaxValue) {
                 String value = String.valueOf(mCurrentValue);
-                if (allowPlaceholder) {
-                    value = value.substring(0, 1);
+                if (allowPlaceholder && value.length() > 1) {
+                    value = placeholderChar;
                 }
                 mNumberViews[i].setText(value);
             }
@@ -298,8 +314,8 @@ public final class PinNumberPicker extends FrameLayout {
             int value = adjustValueInValidRange(mCurrentValue - CURRENT_NUMBER_VIEW_INDEX);
             for (int i = 0; i < NUMBER_VIEWS_RES_ID.length; ++i) {
                 String text = String.valueOf(adjustValueInValidRange(value));
-                if (allowPlaceholder) {
-                    text = text.substring(0, 1);
+                if (allowPlaceholder && text.length() > 1) {
+                    text = placeholderChar;
                 }
                 mNumberViews[i].setText(text);
                 value = adjustValueInValidRange(value + 1);
@@ -319,6 +335,10 @@ public final class PinNumberPicker extends FrameLayout {
 
     public void setAllowPlaceholder(boolean allowPlaceholder) {
         this.allowPlaceholder = allowPlaceholder;
+    }
+
+    public void setPlaceholderCharacter(String val) {
+        placeholderChar = val;
     }
 
     /*
