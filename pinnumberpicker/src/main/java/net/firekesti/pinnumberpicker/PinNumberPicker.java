@@ -41,6 +41,7 @@ public final class PinNumberPicker extends FrameLayout {
     private boolean mArrowsEnabled = false;
     private final View mNumberUpView;
     private final View mNumberDownView;
+    private final View mPasswordDotView;
     private final TextView[] mNumberViews;
     private final OverScroller mScroller;
     private OnFinalNumberDoneListener mListener;
@@ -66,6 +67,7 @@ public final class PinNumberPicker extends FrameLayout {
         mBackgroundView = view.findViewById(R.id.focused_background);
         mNumberUpView = view.findViewById(R.id.number_up_arrow);
         mNumberDownView = view.findViewById(R.id.number_down_arrow);
+        mPasswordDotView = view.findViewById(R.id.password_dot);
         mNumberViews = new TextView[NUMBER_VIEWS_RES_ID.length];
         for (int i = 0; i < NUMBER_VIEWS_RES_ID.length; ++i) {
             mNumberViews[i] = (TextView) view.findViewById(NUMBER_VIEWS_RES_ID[i]);
