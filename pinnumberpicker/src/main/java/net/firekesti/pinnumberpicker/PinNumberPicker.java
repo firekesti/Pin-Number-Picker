@@ -47,6 +47,7 @@ public final class PinNumberPicker extends FrameLayout {
     private OnFinalNumberDoneListener mListener;
     private boolean allowPlaceholder;
     private String placeholderChar;
+    private boolean mPasswordModeEnabled = false;
 
     public PinNumberPicker(Context context) {
         this(context, null);
@@ -245,6 +246,10 @@ public final class PinNumberPicker extends FrameLayout {
         mArrowsEnabled = enabled;
     }
 
+    public void setPasswordModeEnabled(boolean mPasswordModeEnabled) {
+        this.mPasswordModeEnabled = mPasswordModeEnabled;
+    }
+
     public void setNextNumberPicker(PinNumberPicker picker) {
         mNextNumberPicker = picker;
     }
@@ -274,6 +279,10 @@ public final class PinNumberPicker extends FrameLayout {
         endScrollAnimation();
         if (mNumberViewHolder.isFocused()) {
             mBackgroundView.setVisibility(View.VISIBLE);
+            if (mPasswordModeEnabled) {
+                mNumberViewHolder.setAlpha(1.0f);
+                mPasswordDotView.setVisibility(View.GONE);
+            }
             if (mArrowsEnabled) {
                 mNumberUpView.setVisibility(View.VISIBLE);
                 mNumberDownView.setVisibility(View.VISIBLE);
@@ -281,6 +290,10 @@ public final class PinNumberPicker extends FrameLayout {
             updateText();
         } else {
             mBackgroundView.setVisibility(View.GONE);
+            if (mPasswordModeEnabled) {
+                mNumberViewHolder.setAlpha(0f);
+                mPasswordDotView.setVisibility(View.VISIBLE);
+            }
             if (mArrowsEnabled) {
                 mNumberUpView.setVisibility(View.GONE);
                 mNumberDownView.setVisibility(View.GONE);
