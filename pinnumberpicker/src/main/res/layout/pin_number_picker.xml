@@ -40,54 +40,69 @@
             android:tint="@color/pin_picker_arrow_color"
             android:visibility="gone"/>
 
-        <LinearLayout
-            android:id="@+id/number_view_holder"
+        <FrameLayout
             android:layout_width="wrap_content"
-            android:layout_height="@dimen/pin_number_picker_height_standard"
-            android:layout_gravity="center"
-            android:focusable="true"
-            android:orientation="vertical">
+            android:layout_height="@dimen/pin_number_picker_height_standard">
 
-            <TextView
-                android:id="@+id/previous2_number"
-                android:layout_width="@dimen/pin_number_picker_text_view_width"
-                android:layout_height="@dimen/pin_number_picker_text_view_height"
-                android:gravity="center"
-                android:textColor="@color/pin_picker_text_color"
-                android:textSize="@dimen/pin_number_picker_text_size"/>
+            <LinearLayout
+                android:id="@+id/number_view_holder"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/pin_number_picker_height_standard"
+                android:layout_gravity="center"
+                android:focusable="true"
+                android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/previous_number"
-                android:layout_width="@dimen/pin_number_picker_text_view_width"
-                android:layout_height="@dimen/pin_number_picker_text_view_height"
-                android:gravity="center"
-                android:textColor="@color/pin_picker_text_color"
-                android:textSize="@dimen/pin_number_picker_text_size"/>
+                <TextView
+                    android:id="@+id/previous2_number"
+                    android:layout_width="@dimen/pin_number_picker_text_view_width"
+                    android:layout_height="@dimen/pin_number_picker_text_view_height"
+                    android:gravity="center"
+                    android:textColor="@color/pin_picker_text_color"
+                    android:textSize="@dimen/pin_number_picker_text_size"/>
 
-            <TextView
-                android:id="@+id/current_number"
-                android:layout_width="@dimen/pin_number_picker_text_view_width"
-                android:layout_height="@dimen/pin_number_picker_text_view_height"
-                android:gravity="center"
-                android:textColor="@color/pin_picker_text_color"
-                android:textSize="@dimen/pin_number_picker_text_size"/>
+                <TextView
+                    android:id="@+id/previous_number"
+                    android:layout_width="@dimen/pin_number_picker_text_view_width"
+                    android:layout_height="@dimen/pin_number_picker_text_view_height"
+                    android:gravity="center"
+                    android:textColor="@color/pin_picker_text_color"
+                    android:textSize="@dimen/pin_number_picker_text_size"/>
 
-            <TextView
-                android:id="@+id/next_number"
-                android:layout_width="@dimen/pin_number_picker_text_view_width"
-                android:layout_height="@dimen/pin_number_picker_text_view_height"
-                android:gravity="center"
-                android:textColor="@color/pin_picker_text_color"
-                android:textSize="@dimen/pin_number_picker_text_size"/>
+                <TextView
+                    android:id="@+id/current_number"
+                    android:layout_width="@dimen/pin_number_picker_text_view_width"
+                    android:layout_height="@dimen/pin_number_picker_text_view_height"
+                    android:gravity="center"
+                    android:textColor="@color/pin_picker_text_color"
+                    android:textSize="@dimen/pin_number_picker_text_size"/>
 
-            <TextView
-                android:id="@+id/next2_number"
+                <TextView
+                    android:id="@+id/next_number"
+                    android:layout_width="@dimen/pin_number_picker_text_view_width"
+                    android:layout_height="@dimen/pin_number_picker_text_view_height"
+                    android:gravity="center"
+                    android:textColor="@color/pin_picker_text_color"
+                    android:textSize="@dimen/pin_number_picker_text_size"/>
+
+                <TextView
+                    android:id="@+id/next2_number"
+                    android:layout_width="@dimen/pin_number_picker_text_view_width"
+                    android:layout_height="@dimen/pin_number_picker_text_view_height"
+                    android:gravity="center"
+                    android:textColor="@color/pin_picker_text_color"
+                    android:textSize="@dimen/pin_number_picker_text_size"/>
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/password_dot"
                 android:layout_width="@dimen/pin_number_picker_text_view_width"
-                android:layout_height="@dimen/pin_number_picker_text_view_height"
-                android:gravity="center"
-                android:textColor="@color/pin_picker_text_color"
-                android:textSize="@dimen/pin_number_picker_text_size"/>
-        </LinearLayout>
+                android:layout_height="@dimen/pin_number_picker_height_standard"
+                android:contentDescription="@null"
+                android:scaleType="center"
+                android:src="@drawable/password_dot"
+                android:tint="@color/pin_picker_text_color"
+                android:visibility="gone"/>
+        </FrameLayout>
 
         <ImageView
             android:id="@+id/number_down_arrow"
